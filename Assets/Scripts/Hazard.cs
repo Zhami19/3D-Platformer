@@ -3,17 +3,11 @@ using UnityEngine;
 
 public class Hazard : MonoBehaviour
 {
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        /*if (gameObject.name == "Big Rolling Obstacle")
-        {
-            transform.position = new Vector3(52.6f, 55.7f, 55f);
-        }
-        else if (gameObject.name == "Small Rolling Obstacle")
-        {
-            transform.position = new Vector3(-55.7f, 51f, 110f);
-        }*/
+      
     }
 
     // Update is called once per frame
@@ -22,6 +16,15 @@ public class Hazard : MonoBehaviour
         if (transform.position.y <= -10)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.Damage();
         }
     }
 }

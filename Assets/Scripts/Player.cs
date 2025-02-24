@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -20,15 +21,24 @@ public class Player : MonoBehaviour
     [SerializeField]
     Transform myCamera;
 
+    [SerializeField]
+    PlayerStats myStats;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        myStats.health = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y <= -10)
+        {
+            SceneManager.LoadScene(2);
+        }
+
         float xInput = Input.GetAxis("Horizontal");
         float yInput = Input.GetAxis("Vertical");
 
@@ -50,10 +60,6 @@ public class Player : MonoBehaviour
         {
             transform.forward = relativeMovement;
         }
-        /*else if (xInput == 0 && yInput == 0) 
-        {
-            transform.forward = forwardRelativeMovement;
-        }*/
 
         relativeMovement.y = movement.y;
         movement = relativeMovement;
@@ -72,9 +78,17 @@ public class Player : MonoBehaviour
             movement.y = jumpForce;
         }
 
-        controller.Move(movement * Time.deltaTime);
+        controller.Move(movement * Time.deltaTime);     
+    }
 
-        
-        
+    public void Damage()
+    {
+        Debug.Log("Damage taken");
+        myStats.health -= 20f;
+
+        if (myStats.health == 0f)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 }
