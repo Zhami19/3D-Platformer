@@ -29,7 +29,7 @@ public class SpawnManager : MonoBehaviour
         while (!gameOver)
         {
             float randomZ = Random.Range(35, 65);
-            yield return new WaitForSeconds(Random.Range(3f, 5f));
+            yield return new WaitForSeconds(3f);
             Instantiate(bigObstaclePrefab, new Vector3(52.6f, 55.7f, randomZ), Quaternion.identity);
         }
     }
