@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
     Transform myCamera;
 
     [SerializeField]
+    Animator myAnimator;
+
+    [SerializeField]
     PlayerStats myStats;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,6 +44,15 @@ public class Player : MonoBehaviour
 
         float xInput = Input.GetAxis("Horizontal");
         float yInput = Input.GetAxis("Vertical");
+
+        if (xInput != 0 || yInput != 0)
+        {
+            myAnimator.SetBool("isJogging", true);
+        }
+        else
+        {
+            myAnimator.SetBool("isJogging", false);
+        }
 
         Vector3 canForward = myCamera.forward;
         Vector3 canRight = myCamera.right;
@@ -73,9 +85,12 @@ public class Player : MonoBehaviour
 
         grounded = (Physics.Raycast(transform.position + Vector3.down, Vector3.down, 1));
 
+        myAnimator.SetBool("onGround", grounded);
+
         if (Input.GetButtonDown("Jump") && grounded)
         {
             movement.y = jumpForce;
+            myAnimator.SetTrigger("Jump");
         }
 
         controller.Move(movement * Time.deltaTime);     

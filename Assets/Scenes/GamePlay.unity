@@ -230,6 +230,7 @@ MonoBehaviour:
   jumpForce: 15
   gravity: -30
   myCamera: {fileID: 330585546}
+  myAnimator: {fileID: 2022872418}
   myStats: {fileID: 11400000, guid: 1586e937b4bba4d4380fc3d6d803c6e2, type: 2}
 --- !u!143 &224825177
 CharacterController:
@@ -2456,6 +2457,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1844040273}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2022872418 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 75bdbafb48ac57741b32460e7ca6c6de, type: 3}
+  m_PrefabInstance: {fileID: 1400621436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2134267761
 GameObject:
   m_ObjectHideFlags: 0
